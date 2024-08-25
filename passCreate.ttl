@@ -1,0 +1,14 @@
+; create batch server user password
+; ig) sysg user, root user on Batch server
+BT01sysg = 'hostname-sysg'
+BT01root = 'hostname-root'
+
+; save password in passwd.dat
+PWFile = 'passwd.dat'
+
+
+; initial connection
+getpassword PWFile BT01sysg loginPW
+getpassword PWFile BT01root switchPW
+
+end
