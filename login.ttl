@@ -1,0 +1,27 @@
+;サーバ情報
+user = ‘sysg’
+ip = ‘IP address’
+passwdfile = ‘passwd.dat’
+port = ’22'   
+
+getpassword passwdfile ip user_passwd
+
+msg = ip
+strconcat msg ':'
+strconcat msg port
+strconcat msg ' /ssh /auth=password /user='
+strconcat msg user
+strconcat msg ' /passwd='
+strconcat msg user_passwd
+
+;サーバ接続
+connect msg
+
+wait '$'
+sendln 'date;hostname;whoami'
+wait '$'
+sendln 'su -'
+wait 'パスワード:'
+sendln user_passwd
+wait '#'
+sendln 'date;hostname;last -20'
